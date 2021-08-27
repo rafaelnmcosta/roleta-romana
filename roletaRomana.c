@@ -134,10 +134,7 @@ void roleta(int n, char* sentido, tipoLista* lista, tipoSoldado* soldadoInicial)
             }
             proxRemovido = soldadoRemovido->anterior;
         }
-        else{
-            printf("sentido invalido");
-        }
-       
+
         printf("%s", soldadoRemovido->nome);
         removeSoldado(soldadoRemovido, lista);
         roleta(n, sentido, lista, proxRemovido);
@@ -166,10 +163,22 @@ int main(){
     printf("Entre com (n>0):");
     scanf("%d", &n);
 
+    if(n<=0){
+        printf("\nn invalido!\n");
+        //Termina o programa caso o n seja inválido
+        return 0;
+    }
+
     nAux = n;
 
     printf("\nSentido (h - horario e a - anti-horario): ");
     scanf("%s", sentido);
+
+    if(strcmp(sentido, "h") != 0 && strcmp(sentido, "a") != 0){
+        printf("\nSentido invalido!\n");
+        //Termina o programa caso o sentido seja inválido
+        return 0;
+    }
 
     printf("\nNome dos soldados (FIM para encerrar):\n");
     while(verificador == 1){
